@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-Button bind,unbind,square;
-EditText edit;
+Button bind,unbind,timer;
+TextView time;
 MyService myService;
 boolean status;
     @Override
@@ -23,8 +23,8 @@ boolean status;
         setContentView(R.layout.activity_main);
         bind=findViewById(R.id.bind);
         unbind=findViewById(R.id.unbind);
-        square=findViewById(R.id.square);
-        edit=findViewById(R.id.edit);
+        timer=findViewById(R.id.timer);
+        time=findViewById(R.id.time);
         bind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,14 +50,12 @@ boolean status;
                 }
             }
         });
-        square.setOnClickListener(new View.OnClickListener() {
+        timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(status){
-                    int num=Integer.parseInt(edit.getText().toString());
-                    int result=myService.findSquare(num);
-                    Toast.makeText(MainActivity.this,"Square = "+result,Toast.LENGTH_SHORT).show();
-
+                    String result=myService.getTimestamp();
+                    time.setText(result);
                 }
                 else{
                     Toast.makeText(MainActivity.this,"bind service first",Toast.LENGTH_SHORT).show();
