@@ -17,14 +17,16 @@
         android:layout_height="wrap_content"
         android:text="unBind"
         android:id="@+id/unbind"/>
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit"/>
+        android:id="@+id/time"
+        android:textSize="30sp"
+        android:text="Time"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="find square"
-        android:id="@+id/square"/>
+        android:text="Show Timer"
+        android:id="@+id/timer"/>
 
 </LinearLayout>
