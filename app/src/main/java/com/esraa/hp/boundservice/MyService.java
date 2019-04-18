@@ -11,7 +11,9 @@ import android.support.annotation.Nullable;
  */
 
 public class MyService extends Service{
+
     private IBinder binder=new MyBinder();
+    private Chronometer chronometer;
 
 
     public class MyBinder extends Binder{
@@ -25,7 +27,21 @@ public class MyService extends Service{
         return binder;
     }
 
-    public int findSquare(int x){
-        return x*x;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        chronometer = new Chronometer(this);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
+    }
+
+    public String getTimestamp() {
+        long elapsedMillis = SystemClock.elapsedRealtime()
+                - chronometer.getBase();
+        int hours = (int) (elapsedMillis / 3600000);
+        int minutes = (int) (elapsedMillis - hours * 3600000) / 60000;
+        int seconds = (int) (elapsedMillis - hours * 3600000 - minutes * 60000) / 1000;
+        int millis = (int) (elapsedMillis - hours * 3600000 - minutes * 60000 - seconds * 1000);
+        return hours + ":" + minutes + ":" + seconds + ":" + millis;
     }
 }
